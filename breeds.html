@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <head>
+           
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Welcome</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="shortcut icon" href="/img/doggos.png" type="image/png">
+      
+    </head>
+    <body>
+         <script type="text/javascript" src = "./js/jquery-3.3.1.min.js"> </script>
+          
+        <header>
+            <div class = "container">
+                <div id = "branding">
+                    <h1>BORK-BORK!</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="main">HOME</a></li>
+                        <li><a href="test">TEST</a></li>
+                        <li><a href="breeds">ALL BREEDS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+<center> 
+   <div class = "parent">
+     <div class="breed" id = "breeds">
+    </div>
+
+    </div>
+ </center>
+    <script>
+        $( document ).ready(function() { 
+                let resault={}; 
+                let request = new XMLHttpRequest(); 
+
+                request.open("POST", "/allbreeds", true); 
+                request.setRequestHeader("Content-Type", "application/json"); 
+                request.addEventListener("load", function () { 
+                resault=JSON.parse(request.response); 
+                team_fill(resault); 
+                }); 
+                request.send(); 
+                function team_fill(resault){ 
+                for (iter in resault) { 
+                $('#breeds').append('<div class="breed"id ="breeds"><br>' +resault[iter].breed + '<a class="breed" id = "breeds"><img class="breed" src="'+resault[iter].img +'"><br>'+ resault[iter].des+'</a></div>'); 
+
+                } 
+                } 
+              });
+
+    </script>
+    </body>
+    <footer>
+            <p>Alenka Ogloblina &copy; 2k18 </p>
+        </footer>  
+    </html>

@@ -1,0 +1,32 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Doggos",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha ./tests/*.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "get-form-data": "^2.0.0",
+    "global": "^4.3.2",
+    "jquery": "^3.3.1",
+    "mongodb": "^2.2.16",
+    "mongoose": "^5.4.0",
+    "multer": "^1.4.1",
+    "node-static": "^0.7.11",
+    "nodemon": "^1.18.7",
+    "now": "^12.1.8",
+    "passport": "^0.4.0",
+    "passport-auth0": "^1.1.0",
+    "restify": "^7.2.1",
+    "should": "^13.2.3"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
+  }
+}

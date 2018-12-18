@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>borkTEST</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="shortcut icon" href="/img/doggos.png" type="image/png">
+
+
+</head>
+
+<body>
+		<script type="text/javascript" src = "./js/jquery-3.3.1.min.js"> </script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"> </script>
+        <header>
+            <div class = "container">
+                <div id = "branding">
+                    <h1>BORK-BORK!</h1>
+                </div>
+                
+                <nav>
+                        <ul>
+                            <li><a href="main">HOME</a></li>
+                            <li class = "current.html"><a href="test">TEST</a></li>
+                            <li><a href="breeds">ALL BREEDS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+			</header>
+			
+			<script type="text/javascript" >
+
+				//Массив вопросов и ответа
+				var data_array = [
+				  ["Do you have park near you house?","YES","NO",1],
+				  ["Are you going to train you dog?","YES","NO",1],
+				  ["Do you have dogs earlier?","YES","NO",1],
+				  ["Is it important to be a smart dog?","YES","NO",1],
+				  ["Do you have children?","YES","NO",1],
+				  ["How much time you have for your dog?","ALL DAY LONG","I HAVEN'T TIME",1],
+				];
+			
+				var plus = 0;
+				var cur_answer = 0;
+				var count_answer = data_array.length;
+				
+				
+				function check(num){
+			
+					if(num == 0){ 
+						
+						document.getElementById('question').style.display='block';
+						
+						document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+						document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+						document.getElementById('question').innerHTML=data_array[cur_answer][0];
+						
+						document.getElementById('start').style.display='none';
+						document.getElementById('end').style.display='inline';
+						document.getElementById('bulka').style.display='none';
+						
+						
+						
+					}else{
+			
+						if( num ==  data_array[cur_answer][3]){
+							plus++;
+							}				
+						cur_answer++;
+						if(cur_answer < count_answer){
+						
+							document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+							document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+							document.getElementById('question').innerHTML=data_array[cur_answer][0];
+							
+						}else{
+							
+							document.getElementById('option1').style.display='none';
+							document.getElementById('option2').style.display='none';
+						
+							document.getElementById('question').style.display='none';
+							document.getElementById('end').style.display='inline';
+							
+							if (plus==0)
+							{
+							document.getElementById('result').innerHTML='<a style="font-size:30px"> This is for you:<img src="/img/cat.jpg" class = "imgbreed"> <br></a>';
+							}else {
+							
+							document.getElementById('result').innerHTML='<h1 class = "breed">This dog is right for you: <h1></div>';
+												
+							$.ajax({ 
+							url: '/result', // путь к php-обработчику 
+							type: 'POST', // метод передачи данных 
+							dataType: 'json', // тип ожидаемых данных в ответе 
+							data: {key: plus}, // данные, которые передаем на сервер 
+												
+							success: function (json){
+								
+								for(iter in json){
+							
+									$('#result_breed').append('<h2 class="breed"><br>' +json[iter].breed + '<center><img id = "resimg" src="'+json[iter].img +'" ></center><br>'+ json[iter].des+'</h2>'); // выводим на страницу данные, полученные с сервера 
+									} }
+							}); 
+						}		
+							
+						}
+					}
+				} 		
+			</script>
+	<center>	<br>	
+		<h1 class="breed" id="result"></h1>	
+		<h2 class="row" id = "result_breed"></h2>
+			
+		<img id="bulka" src = "./img/bulka.png"><br>
+		<a href= "#" id="start"  class="body"  onclick="check(0)" >START TEST</a>
+		
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px;" id="question"></p>
+		 
+		<a href="#"  onclick="check(1)" class= "body" id="option1"></a>    
+		<a href="#" onclick="check(2)" class ="body" id="option2"></a>  
+         		
+    </center>
+	<center><br>
+		
+		
+		<div class = "container">
+			<div class="row" id = "result_breed">
+		</div>
+				
+		<script type="text/javascript"> 
+		var curent_url = document.URL; 
+		document.write("<a href='test' id='end' style='display: none;' class='body' href='" + curent_url + "'>START AGAIN</a>"); 
+		</script>		
+	</center>
+</body> 
+<footer>
+        <p>Alenka Ogloblina &copy; 2k18 </p>
+    </footer>  
+</html>
