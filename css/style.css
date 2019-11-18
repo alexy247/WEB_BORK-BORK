@@ -133,19 +133,19 @@ header a:hover{
     margin-right: 2%;
 }*/
 
-#breeds .breed img{
+.breedImg {
     width:150px;
     float:left;
     height:150px;   
 }
 
-div .breed{
+.breedDesc{
     font-size: 50px;
     color: #0D1B2A;
     text-align: center;
 }
 
-.breed > a{
+.breedName{
     font-size: 20px;
     color: #0D1B2A;
     text-align: center;

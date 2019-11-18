@@ -47,7 +47,7 @@
                 request.send(); 
                 function team_fill(resault){ 
                 for (iter in resault) { 
-                $('#breeds').append('<div class="breed"id ="breeds"><br>' +resault[iter].breed + '<a class="breed" id = "breeds"><img class="breed" src="'+resault[iter].img +'"><br>'+ resault[iter].des+'</a></div>'); 
+                $('#breeds').append('<div class="breedBox"id ="breed"><h3 class="breedName">'+resault[iter].breed +'</h3><img class="breedImg" src="'+resault[iter].img +'"><h4 class="breedDesc">'+ resault[iter].des+'</h4></div>'); 
 
                 } 
                 } 
